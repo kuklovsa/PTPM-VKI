@@ -31,6 +31,15 @@ def loglen (a):
     else:
         logging.warning(f"сторона меньше 0: {a}")
 
+def tryparse (a):
+    try:
+        a = a.strip(" ")
+        a = a.strip('"')
+        a = a.strip("'")
+        a = int(a)
+    except ValueError:
+        logging.warning ("Не удалось преобразовать в число")
+    return (a)
 
 
 def get_triangle_vertices(a, b, c):
@@ -75,7 +84,7 @@ def proga ():
         a = a.strip("'")
         a = int(a)
     except ValueError:
-        logging.warning ("Не удалось преобразовать в число")
+        logging.warning("Не удалось преобразовать в число")
     loglen (a)
     b = input('сторона b: ')
     try:
@@ -84,7 +93,7 @@ def proga ():
         b = b.strip("'")
         b = int(b)
     except ValueError:
-        logging.warning ("Не удалось преобразовать в число")
+        logging.warning("Не удалось преобразовать в число")
     loglen(b)
     c = input('сторона c: ')
     try:
@@ -93,7 +102,7 @@ def proga ():
         c = c.strip("'")
         c = int(c)
     except ValueError:
-        logging.warning ("Не удалось преобразовать в число")
+        logging.warning("Не удалось преобразовать в число")
     loglen(c)
 
     trty, v1, v2, v3 = get_triangle_vertices (a, b, c)
