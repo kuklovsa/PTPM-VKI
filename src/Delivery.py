@@ -7,6 +7,16 @@ def calculate_delivery_cost(weight: float, distance: int, package_type: str, is_
     Возвращает: (стоимость_в_рублях, дата_доставки)
     В случае критических ошибок или неверных параметров возвращает (-1, "0000-00-00").
     """
+    try:
+        # Принудительно приводим к нужным типам на случай, если переданы строки
+        weight = float(weight)
+        distance = int(distance)
+        package_type = str(package_type)
+        is_express = bool(is_express)
+    except (ValueError, TypeError):
+        # Если передали неконвертируемую строку (например, "много" или None)
+        return -1, "0000-00-00"
+
 
     # TODO: Проверить физические ограничения на вес и дистанцию (границы до 50кг и 5000км)
     if weight < 0.1 or weight > 50.0 or distance < 1 or distance > 5000:
@@ -46,3 +56,4 @@ def calculate_delivery_cost(weight: float, distance: int, package_type: str, is_
     delivery_date = current_date + datetime.timedelta(days=days_needed)
 
     return int(total_cost), delivery_date.strftime("%Y-%m-%d")
+
