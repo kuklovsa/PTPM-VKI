@@ -16,6 +16,19 @@ class Test_Delivery (unittest.TestCase):
             calculate_delivery_cost(50.0, 5000, "обычный", False), res
         )
 
+    def test_3(self):
+        res = 840, "2026-09-04"
+        self.assertEqual(calculate_delivery_cost(5.0, 100, "обычный", False), res)
+
+    def test_4(self):
+        res = 1050, "2026-09-04"
+        self.assertEqual(calculate_delivery_cost(20.0, 100, "обычный", False), res)
+
+
+    def test_5(self):
+        res = 700, "2026-09-04"
+        self.assertEqual(calculate_delivery_cost(1.0, 100, "  обычный  ", False), res)
+
     def test_6(self):
         res = -1, "0000-00-00"
         self.assertEqual(calculate_delivery_cost(600, 5, "обычный", True), res)
